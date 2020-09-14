@@ -47,7 +47,7 @@ class ShoppingCartControllerIntegrationTest {
 
 
     @Test
-    void shouldAddProductsToTheShoppingCart() throws Exception {
+    void shouldAddProductsToTheShoppingCartStep1() throws Exception {
 
         final MvcResult mvcResult = mockMvc.perform(
                 post("/shopping-cart")
