@@ -1,0 +1,13 @@
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/controller/ShoppingCartControllerIntegrationTest.java
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/controller/response/ShoppingCartResponseTest.java
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/controller/ProductControllerTest.java
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/model/ShoppingCartTest.java
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/controller/request/AddItemRequestTest.java
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/controller/ShoppingCartControllerTest.java
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/model/ShoppingCartIdTest.java
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/controller/response/ProductResponseTest.java
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/model/ProductTest.java
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/service/ProductServiceTest.java
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/controller/response/ShoppingCartItemResponseTest.java
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/ApplicationTests.java
+/Users/marciomarinho/projects/riosoftware/scart/src/test/java/au/com/riosoftware/scart/service/ShoppingCartServiceTest.java

@@ -1,0 +1,15 @@
+au/com/riosoftware/scart/controller/request/AddItemRequest.class
+au/com/riosoftware/scart/repository/ProductRepository.class
+au/com/riosoftware/scart/controller/response/ShoppingCartResponse.class
+au/com/riosoftware/scart/model/Product.class
+au/com/riosoftware/scart/model/ShoppingCart.class
+au/com/riosoftware/scart/service/ShoppingCartService.class
+au/com/riosoftware/scart/model/ShoppingCartItem.class
+au/com/riosoftware/scart/controller/response/ShoppingCartItemResponse.class
+au/com/riosoftware/scart/controller/ProductController.class
+au/com/riosoftware/scart/Application.class
+au/com/riosoftware/scart/controller/response/ProductResponse.class
+au/com/riosoftware/scart/repository/ShoppingCartRepository.class
+au/com/riosoftware/scart/model/ShoppingCartId.class
+au/com/riosoftware/scart/service/ProductService.class
+au/com/riosoftware/scart/controller/ShoppingCartController.class

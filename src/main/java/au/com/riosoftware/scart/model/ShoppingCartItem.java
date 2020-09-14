@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public class ShoppingCartItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)

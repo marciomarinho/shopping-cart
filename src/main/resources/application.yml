@@ -1,4 +1,7 @@
 spring:
+  flyway:
+    enabled: true
+
   jpa:
     show-sql: true
     hibernate:
@@ -13,6 +16,3 @@ spring:
     username: sa
     password:
     driverClassName: org.h2.Driver
-
-  flyway:
-    enabled: true
