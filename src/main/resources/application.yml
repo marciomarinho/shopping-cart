@@ -1,12 +1,12 @@
 spring:
 
   flyway:
-    enabled: false
+    enabled: true
 
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
   h2:
     console:
       enabled: true

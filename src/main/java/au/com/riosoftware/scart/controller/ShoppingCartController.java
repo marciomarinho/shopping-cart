@@ -2,14 +2,12 @@ package au.com.riosoftware.scart.controller;
 
 import au.com.riosoftware.scart.controller.request.AddItemRequest;
 import au.com.riosoftware.scart.controller.response.ShoppingCartResponse;
-import au.com.riosoftware.scart.model.ShoppingCartId;
+import au.com.riosoftware.scart.controller.response.ShoppingCartId;
 import au.com.riosoftware.scart.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/shopping-cart")
@@ -23,14 +21,14 @@ public class ShoppingCartController {
     }
 
     @PostMapping
-    public ShoppingCartId getShoppingCartId() {
-        return shoppingCartService.getShoppingCartId();
+    public ResponseEntity<ShoppingCartId> getShoppingCartId() {
+        return new ResponseEntity<>(shoppingCartService.getShoppingCartId(), HttpStatus.CREATED);
     }
 
     @PatchMapping
-    public ShoppingCartResponse addItem(@RequestBody final AddItemRequest addItemRequest) {
+    public ResponseEntity<ShoppingCartResponse> addItem(@RequestBody final AddItemRequest addItemRequest) {
         ShoppingCartResponse shoppingCartResponse = this.shoppingCartService.addItem(addItemRequest);
-        return shoppingCartResponse;
+        return new ResponseEntity<>(shoppingCartResponse, HttpStatus.OK);
     }
 
 }

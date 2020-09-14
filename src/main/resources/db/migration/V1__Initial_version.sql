@@ -6,6 +6,8 @@ drop sequence if exists hibernate_sequence;
 
 create sequence hibernate_sequence start with 1 increment by 1;
 create table product (id bigint not null, description varchar(255), price decimal(19,2), primary key (id));
+create unique index product_idx_desc on product (description);
+
 create table shopping_cart (id bigint not null, total decimal(19,2), primary key (id));
 create table shopping_cart_items (shopping_cart_id bigint not null, items_id bigint not null);
 create table shopping_cart_item (id bigint not null, price decimal(19,2), product_id bigint, primary key (id));

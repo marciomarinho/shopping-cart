@@ -1,5 +1,6 @@
 package au.com.riosoftware.scart.model;
 
+import au.com.riosoftware.scart.controller.response.ShoppingCartId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

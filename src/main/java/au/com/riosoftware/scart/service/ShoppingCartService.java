@@ -4,7 +4,7 @@ import au.com.riosoftware.scart.controller.request.AddItemRequest;
 import au.com.riosoftware.scart.controller.response.ShoppingCartResponse;
 import au.com.riosoftware.scart.model.Product;
 import au.com.riosoftware.scart.model.ShoppingCart;
-import au.com.riosoftware.scart.model.ShoppingCartId;
+import au.com.riosoftware.scart.controller.response.ShoppingCartId;
 import au.com.riosoftware.scart.repository.ProductRepository;
 import au.com.riosoftware.scart.repository.ShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
