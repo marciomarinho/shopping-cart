@@ -17,12 +17,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.AdditionalMatchers.eq;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -47,22 +47,13 @@ class ShoppingCartControllerIntegrationTest {
 
 
     @Test
+    @Transactional
     void shouldAddProductsToTheShoppingCartStep1() throws Exception {
 
-        final MvcResult mvcResult = mockMvc.perform(
-                post("/shopping-cart")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isCreated())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
-                .andReturn();
+        final Long cartId = createNewCart();
 
-        final Map<String, Integer> cartMap = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), Map.class);
+        final Product doveSoap = getDoveSoap();
 
-        final Product doveSoap = productRepository.findByDescription("Dove Soap");
-
-        final Long cartId = Long.valueOf(cartMap.get("id"));
         final AddItemRequest addItemRequest = new AddItemRequest(cartId, doveSoap.getId(), 1);
 
         for (int i = 0; i < 5; i++) {
@@ -78,7 +69,53 @@ class ShoppingCartControllerIntegrationTest {
 
         final ShoppingCart shoppingCart = shoppingCartRepository.findById(cartId).get();
         assertThat(shoppingCart.getTotal(), is(new BigDecimal("199.95")));
+        assertThat(shoppingCart.getItems().size(), is(5));
 
     }
 
+    @Test
+    @Transactional
+    void shouldAddProductsToTheShoppingCartStep2() throws Exception {
+
+        final Long cartId = createNewCart();
+
+        final Product doveSoap = getDoveSoap();
+
+        final AddItemRequest addItemRequest = new AddItemRequest(cartId, doveSoap.getId(), 1);
+
+        for (int i = 0; i < 8; i++) {
+            mockMvc.perform(
+                    patch("/shopping-cart")
+                            .content(objectMapper.writeValueAsString(addItemRequest))
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
+        }
+
+        final ShoppingCart shoppingCart = shoppingCartRepository.findById(cartId).get();
+        assertThat(shoppingCart.getTotal(), is(new BigDecimal("319.92")));
+        assertThat(shoppingCart.getItems().size(), is(8));
+
+    }
+
+    private Long createNewCart() throws Exception {
+        final MvcResult mvcResult = mockMvc.perform(
+                post("/shopping-cart")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
+                .andReturn();
+
+        final Map<String, Integer> cartMap = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), Map.class);
+
+        return Long.valueOf(cartMap.get("id"));
+    }
+
+    private Product getDoveSoap() {
+        return productRepository.findByDescription("Dove Soap");
+    }
 }

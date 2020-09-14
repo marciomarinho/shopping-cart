@@ -35,4 +35,16 @@ class ShoppingCartTest {
 
         assertEquals(shoppingCart.getTotal(), new BigDecimal("199.95"));
     }
+
+    @Test
+    public void shouldCalculateTotalForStep2() {
+
+        for (int i = 0; i < 8; i++) {
+            final Product product = new Product("Dove Soap", new BigDecimal("39.99"));
+            shoppingCart.addItem(product);
+        }
+
+        assertEquals(shoppingCart.getTotal(), new BigDecimal("319.92"));
+        
+    }
 }
