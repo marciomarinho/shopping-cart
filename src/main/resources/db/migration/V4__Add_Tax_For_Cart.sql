@@ -1,0 +1,1 @@
+alter table shopping_cart add salesTaxes decimal(19,2);

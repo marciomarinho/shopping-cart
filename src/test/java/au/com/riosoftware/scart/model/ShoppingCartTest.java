@@ -33,7 +33,8 @@ class ShoppingCartTest {
             shoppingCart.addItem(product);
         }
 
-        assertEquals(shoppingCart.getTotal(), new BigDecimal("199.95"));
+        assertEquals(new BigDecimal("224.95"), shoppingCart.getTotal());
+        assertEquals(new BigDecimal("25.00"), shoppingCart.getSalesTaxes());
     }
 
     @Test
@@ -44,7 +45,24 @@ class ShoppingCartTest {
             shoppingCart.addItem(product);
         }
 
-        assertEquals(shoppingCart.getTotal(), new BigDecimal("319.92"));
-        
+        assertEquals(new BigDecimal("359.92"), shoppingCart.getTotal());
+        assertEquals(new BigDecimal("40.00"), shoppingCart.getSalesTaxes());
+
+    }
+
+    @Test
+    public void shouldCalculateTotalForStep3() {
+
+        final Product doveSoap = new Product("Dove Soap", new BigDecimal("39.99"));
+        final Product axeDeo = new Product("Axe Deo", new BigDecimal("99.99"));
+
+        shoppingCart.addItem(doveSoap);
+        shoppingCart.addItem(doveSoap);
+        shoppingCart.addItem(axeDeo);
+        shoppingCart.addItem(axeDeo);
+
+        assertEquals(new BigDecimal("314.96"), shoppingCart.getTotal());
+        assertEquals(new BigDecimal("35.00"), shoppingCart.getSalesTaxes());
+
     }
 }

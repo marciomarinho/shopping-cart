@@ -33,6 +33,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class ShoppingCartControllerIntegrationTest {
 
+    public static final String DOVE_SOAP = "Dove Soap";
+
+    public static final String AXE_DEO = "Axe Deo";
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -52,7 +56,7 @@ class ShoppingCartControllerIntegrationTest {
 
         final Long cartId = createNewCart();
 
-        final Product doveSoap = getDoveSoap();
+        final Product doveSoap = getDoveSoap(DOVE_SOAP);
 
         final AddItemRequest addItemRequest = new AddItemRequest(cartId, doveSoap.getId(), 1);
 
@@ -68,7 +72,8 @@ class ShoppingCartControllerIntegrationTest {
         }
 
         final ShoppingCart shoppingCart = shoppingCartRepository.findById(cartId).get();
-        assertThat(shoppingCart.getTotal(), is(new BigDecimal("199.95")));
+        assertThat(shoppingCart.getTotal(), is(new BigDecimal("224.95")));
+        assertThat(shoppingCart.getSalesTaxes(), is(new BigDecimal("25.00")));
         assertThat(shoppingCart.getItems().size(), is(5));
 
     }
@@ -79,7 +84,7 @@ class ShoppingCartControllerIntegrationTest {
 
         final Long cartId = createNewCart();
 
-        final Product doveSoap = getDoveSoap();
+        final Product doveSoap = getDoveSoap(DOVE_SOAP);
 
         final AddItemRequest addItemRequest = new AddItemRequest(cartId, doveSoap.getId(), 1);
 
@@ -95,8 +100,41 @@ class ShoppingCartControllerIntegrationTest {
         }
 
         final ShoppingCart shoppingCart = shoppingCartRepository.findById(cartId).get();
-        assertThat(shoppingCart.getTotal(), is(new BigDecimal("319.92")));
+        assertThat(shoppingCart.getTotal(), is(new BigDecimal("359.92")));
+        assertThat(shoppingCart.getSalesTaxes(), is(new BigDecimal("40.00")));
         assertThat(shoppingCart.getItems().size(), is(8));
+
+    }
+
+    @Test
+    @Transactional
+    void shouldAddProductsToTheShoppingCartStep3() throws Exception {
+
+        final Long cartId = createNewCart();
+
+        final Product doveSoap = getDoveSoap(DOVE_SOAP);
+
+        final Product axeDeo = getDoveSoap(AXE_DEO);
+
+        final AddItemRequest doveSoapItemRequest = new AddItemRequest(cartId, doveSoap.getId(), 1);
+
+        final AddItemRequest axeDeoItemRequest = new AddItemRequest(cartId, axeDeo.getId(), 1);
+
+        for (int i = 0; i < 4; i++) {
+            mockMvc.perform(
+                    patch("/shopping-cart")
+                            .content(objectMapper.writeValueAsString(i < 2 ? doveSoapItemRequest : axeDeoItemRequest))
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
+        }
+
+        final ShoppingCart shoppingCart = shoppingCartRepository.findById(cartId).get();
+        assertThat(shoppingCart.getTotal(), is(new BigDecimal("314.96")));
+        assertThat(shoppingCart.getSalesTaxes(), is(new BigDecimal("35.00")));
+        assertThat(shoppingCart.getItems().size(), is(4));
 
     }
 
@@ -115,7 +153,7 @@ class ShoppingCartControllerIntegrationTest {
         return Long.valueOf(cartMap.get("id"));
     }
 
-    private Product getDoveSoap() {
-        return productRepository.findByDescription("Dove Soap");
+    private Product getDoveSoap(final String productName) {
+        return productRepository.findByDescription(productName);
     }
 }
