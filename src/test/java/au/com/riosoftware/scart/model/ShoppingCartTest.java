@@ -21,7 +21,7 @@ class ShoppingCartTest {
     }
 
     @Test
-    public void shouldCalculateTotalFor5DoveSoapUnits() {
+    public void shouldCalculateTotalForStep1() {
 
         products.add(new Product("Dove Soap", new BigDecimal("39.99")));
         products.add(new Product("Dove Soap", new BigDecimal("39.99")));
