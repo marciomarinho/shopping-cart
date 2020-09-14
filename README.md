@@ -157,3 +157,5 @@ All classes have tests, but (IMHO) the most interesting one is definitely : **Sh
 Green build on Travis CI: https://travis-ci.org/github/marciomarinho/shopping-cart
 
 ![Green Build](6_green_build_travis_ci.png)
+
+Github project : https://github.com/marciomarinho/shopping-cart
