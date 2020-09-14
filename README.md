@@ -154,6 +154,6 @@ The application has a 100% test coverage, as seen on Jacoco report.
 
 All classes have tests, but (IMHO) the most interesting one is definitely : **ShoppingCartControllerIntegrationTest** 
 
-Green build on Travis CI:
+Green build on Travis CI: https://travis-ci.org/github/marciomarinho/shopping-cart
 
 ![Green Build](6_green_build_travis_ci.png)
