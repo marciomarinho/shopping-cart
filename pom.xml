@@ -105,7 +105,6 @@
 						</goals>
 					</execution>
 
-					<!-- Simplified version -->
 					<execution>
 						<id>report</id>
 						<phase>test</phase>
