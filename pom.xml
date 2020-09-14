@@ -12,7 +12,7 @@
 	<artifactId>scart</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>shopping-cart</name>
-	<description>Shopping Cart Code Exercise</description>
+	<description>Shopping Cart Coding Exercise</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -78,12 +78,25 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.5</version>
+
 				<configuration>
 					<excludes>
 						<exclude>**/Application.*</exclude>
-<!--						<exclude>au/com/unohomeloans/challenge/domain/**/*</exclude>-->
 					</excludes>
+					<rules>
+						<rule>
+							<element>PACKAGE</element>
+							<limits>
+								<limit>
+									<counter>LINE</counter>
+									<value>COVEREDRATIO</value>
+									<minimum>0.96</minimum>
+								</limit>
+							</limits>
+						</rule>
+					</rules>
 				</configuration>
+
 				<executions>
 					<execution>
 						<id>default-prepare-agent</id>

@@ -51,7 +51,6 @@ class ShoppingCartControllerIntegrationTest {
 
         final MvcResult mvcResult = mockMvc.perform(
                 post("/shopping-cart")
-//                        .content(objectMapper.writeValueAsString(addItemRequest))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -69,7 +68,7 @@ class ShoppingCartControllerIntegrationTest {
         for (int i = 0; i < 5; i++) {
             mockMvc.perform(
                     patch("/shopping-cart")
-                        .content(objectMapper.writeValueAsString(addItemRequest))
+                            .content(objectMapper.writeValueAsString(addItemRequest))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
