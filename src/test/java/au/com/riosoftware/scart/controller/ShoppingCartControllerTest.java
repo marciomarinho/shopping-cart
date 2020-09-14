@@ -1,7 +1,7 @@
 package au.com.riosoftware.scart.controller;
 
 import au.com.riosoftware.scart.controller.request.AddItemRequest;
-import au.com.riosoftware.scart.controller.response.ShoppingCartId;
+import au.com.riosoftware.scart.controller.response.ShoppingCartIdResponse;
 import au.com.riosoftware.scart.service.ShoppingCartService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ class ShoppingCartControllerTest {
     private ShoppingCartService shoppingCartService;
 
     @Mock
-    private ShoppingCartId shoppingCartId;
+    private ShoppingCartIdResponse shoppingCartIdResponse;
 
     private ShoppingCartController shoppingCartController;
 
@@ -30,7 +30,7 @@ class ShoppingCartControllerTest {
 
     @Test
     void shouldGetShoppingCartId() {
-        given(shoppingCartService.getShoppingCartId()).willReturn(shoppingCartId);
+        given(shoppingCartService.getShoppingCartId()).willReturn(shoppingCartIdResponse);
         shoppingCartController.getShoppingCartId();
         verify(shoppingCartService).getShoppingCartId();
     }

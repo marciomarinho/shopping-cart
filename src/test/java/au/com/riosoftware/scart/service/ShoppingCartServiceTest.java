@@ -4,7 +4,7 @@ import au.com.riosoftware.scart.controller.request.AddItemRequest;
 import au.com.riosoftware.scart.controller.response.ShoppingCartResponse;
 import au.com.riosoftware.scart.model.Product;
 import au.com.riosoftware.scart.model.ShoppingCart;
-import au.com.riosoftware.scart.controller.response.ShoppingCartId;
+import au.com.riosoftware.scart.controller.response.ShoppingCartIdResponse;
 import au.com.riosoftware.scart.repository.ProductRepository;
 import au.com.riosoftware.scart.repository.ShoppingCartRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,7 +40,7 @@ class ShoppingCartServiceTest {
     @Test
     public void shouldReturnNewShoppingCartId() {
         given(shoppingCartRepository.save(any(ShoppingCart.class))).willReturn(new ShoppingCart(678l));
-        ShoppingCartId actual = shoppingCartService.getShoppingCartId();
+        ShoppingCartIdResponse actual = shoppingCartService.getShoppingCartId();
         assertEquals(actual.getId(), Long.valueOf(678));
         verify(shoppingCartRepository).save(any(ShoppingCart.class));
     }

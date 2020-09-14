@@ -2,7 +2,7 @@ package au.com.riosoftware.scart.controller;
 
 import au.com.riosoftware.scart.controller.request.AddItemRequest;
 import au.com.riosoftware.scart.controller.response.ShoppingCartResponse;
-import au.com.riosoftware.scart.controller.response.ShoppingCartId;
+import au.com.riosoftware.scart.controller.response.ShoppingCartIdResponse;
 import au.com.riosoftware.scart.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class ShoppingCartController {
     }
 
     @PostMapping
-    public ResponseEntity<ShoppingCartId> getShoppingCartId() {
+    public ResponseEntity<ShoppingCartIdResponse> getShoppingCartId() {
         return new ResponseEntity<>(shoppingCartService.getShoppingCartId(), HttpStatus.CREATED);
     }
 
